@@ -1,47 +1,26 @@
 import { auth } from '@/auth';
 import { Context, Hono } from 'hono';
-import { jwtDecrypt } from 'jose/jwt/decrypt';  
 
-const app = new Hono();
-  
 
-type User = {
-  id: string;
-  name: string | null;
-  email: string | null;
-  username: string | null;
-  image: string | null;
-};
-
-// Define the custom Env type
-type CustomEnv = {
-  Variables: {
-    sessionData: User | null;
-  };
-};
-
-export const sessionMiddleware = async (c: Context<CustomEnv>, next: () => Promise<void>) => {
-  
+export const sessionMiddleware = async (c, next) => {
   try {
-    const session = await auth();
+    // Call the NextAuth helper to get the session
+    const session = await auth(); 
 
-    const payload: User | null = session?.user ? {
-      id: session.user.id || '',
-      name: session.user.name ?? '',
-      email: session.user.email ?? '',
-      username: session.user.username ?? '',
-      image: session.user.image ?? '', 
-    } : null;
+    // Extract user payload from session
+    const payload = session?.user;
+
     if (!payload) {
       return c.json({ error: 'Unauthorized' }, 401);
     }
 
-    console.log('payload', payload)
-
+    // Attach session data to the context
     c.set('sessionData', payload);
 
+    // Proceed to the next handler
     await next();
   } catch (error) {
+    console.error('Session middleware error:', error);
     return c.json({ error: 'Server error' }, 500);
   }
 };

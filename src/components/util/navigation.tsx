@@ -35,8 +35,8 @@ export const Navigation = () => {
             label: 'Budgets'
         },
         {
-            href: '/dashboard/accounts',
-            label: 'Accounts'
+            href: '/dashboard/portfolio',
+            label: 'Portfolio'
         },
         {
             href: '/dashboard/categories',
@@ -83,9 +83,7 @@ export const Navigation = () => {
         <nav className="hidden md:flex items-center gap-x-2 overflow-x-auto">
             {routes.map((route) => (
                 <>
-                    {/* <Link key={index} href={route.href}>
-                        <p className="text-gray-500 hover:text-gray-900">{route.label}</p>
-                    </Link> */}
+                   
                     <Navbutton key={route.href} href={route.href} label={route.label} isActive={isActivePath(route.href)} />
                 </>
             ))}

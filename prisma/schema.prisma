@@ -28,7 +28,7 @@ model Portfolio {
   id            String          @id @default(cuid())
   name          String?
   description   String?
-  userId        String          @unique
+  userId        String          
   user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt

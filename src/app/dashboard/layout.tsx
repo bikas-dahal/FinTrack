@@ -15,7 +15,7 @@ const DashboardLayout = async ({ children}: {children: React.ReactNode}) => {
         <QueryProvider>
           <SessionProvider session={session}>
               <Header />
-              <div className='mt-16'>
+              <div className='max-w-screen-xl mx-auto'>
                 <SheetProvider />
                   {children}
               </div>

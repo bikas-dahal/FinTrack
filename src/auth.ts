@@ -23,7 +23,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         const {username, password} = parsedData.data
 
-          console.log(credentials)
+          // console.log(credentials)
           const user = await getUserByUsername(username as string)
 
           if (!user) {
@@ -55,8 +55,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token
     },
     session: async ({ session, token}) => {
-      console.log(token)
-      console.log(session)
+      // console.log(token)
+      // console.log(session)
       if (token.sub && session.user) {
         session.user.id = token.sub
         session.user.username = token.username || ''

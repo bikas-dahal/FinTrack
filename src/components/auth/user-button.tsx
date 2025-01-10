@@ -17,11 +17,11 @@ interface UserButtonProps {
 export const UserButton = () => {
     const session = useSession()
 
-    console.log(session)
+    // console.log(session)
     const displayName = session?.data?.user.username || session?.data?.user.name
     const firstLetter = (session?.data?.user.username || session?.data?.user.name)?.charAt(0);
     const userImage = session?.data?.user?.image
-    console.log(userImage)
+    // console.log(userImage)
     const imageAlt = session?.data?.user.username || session?.data?.user.name
 
 

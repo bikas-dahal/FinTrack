@@ -1,14 +1,11 @@
 import { client } from "@/lib/hono";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetPortfolio = (id?: string) => {
+export const useGetPortfolios = () => {
     const query = useQuery({
-        enabled: !!id,
-        queryKey: ['port', {id}],
+        queryKey: ['portfolio'],
         queryFn: async () => {
-            const response = await client.api.hono.portfolio[':id'].$get({
-                param: {id}
-            })
+            const response = await client.api.hono.portfolio.$get()
 
             if (!response.ok) {
                 throw new Error('Failed to fetch portfolio')

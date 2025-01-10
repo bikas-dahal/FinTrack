@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { portfolioFormSchema, PortfolioFormType } from "@/schema/form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,6 +41,7 @@ export const PortfolioForm = ({ id, defaultValues, onSubmit, onDelete, disabled 
                             <FormControl>
                                 <Input {...field} placeholder="Name" disabled={disabled} />
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -52,6 +53,7 @@ export const PortfolioForm = ({ id, defaultValues, onSubmit, onDelete, disabled 
                             <FormControl>
                                 <Input {...field} placeholder="Description" disabled={disabled} />
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -59,7 +61,7 @@ export const PortfolioForm = ({ id, defaultValues, onSubmit, onDelete, disabled 
                     {id ? 'Update Portfolio' : 'Create Portfolio'}
                 </Button>
                 {!!id && (
-                    <Button disabled={disabled} className="w-full " onClick={handleDelete} variant="secondary">
+                    <Button disabled={disabled} type="button" className="w-full " onClick={handleDelete} variant="secondary">
                         <Trash2Icon className="" />
                         Delete Portfolio
                     </Button>
