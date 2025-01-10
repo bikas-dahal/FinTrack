@@ -6,12 +6,12 @@ import { FaGoogle } from 'react-icons/fa'
 const SocialLogin = () => {
   return (
     <div>
-        <div className="relative text-center text-sm mx-4">
+        <div className="relative text-center text-sm mx-8">
                         
                         <form action={ 
             () => login()
           }>
-            <Button variant="outline" type='submit' className="w-full bg-slate-300">
+            <Button variant="outline" type='submit' className="w-full bg-slate-300 dark:bg-slate-700">
                   <FaGoogle className="mr-2" />
                   <span className="">Login with Google</span>
                 </Button>
