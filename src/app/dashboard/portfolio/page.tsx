@@ -11,7 +11,7 @@ import { columns } from './columns'
 import { DataTable } from '@/components/data-table'
 import {  useGetPortfolios } from '@/features/portfolio/api/use-get-portfolios'
 import { Skeleton } from '@/components/ui/skeleton'
-import { useBulkDeletePortfolios } from '@/features/portfolio/api/use-bulk-delete'
+import { useBulkDeletePortfolios } from '@/features/portfolio/api/use-bulk-delete-portfolio'
 
 const PortfolioPage = () => {
 

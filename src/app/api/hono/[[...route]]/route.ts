@@ -2,6 +2,8 @@ import { Context, Hono } from 'hono'
 import { handle } from 'hono/vercel'
 
 import portfolio from './portfolio'
+import categories from './categories'
+import transactions from './transactions'
 import { sessionMiddleware } from './middleware'
 
 // type CustomContext = Context<{ sessionData: any }>;
@@ -24,6 +26,8 @@ app.use('*', sessionMiddleware)
 
 const routes = app
     .route('/portfolio', portfolio)
+    .route('/categories', categories)
+    .route('/transactions', transactions)
 
 
 export const GET = handle(app)

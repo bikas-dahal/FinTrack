@@ -18,6 +18,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   portfolios    Portfolio[]
+  categories    Cateregory[]
+  transactions  Transaction[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -30,10 +32,38 @@ model Portfolio {
   description   String?
   userId        String          
   user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions  Transaction[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
 }
 
+model Cateregory {
+  id            String          @id @default(cuid())
+  name          String?
+  description   String?
+  userId        String          
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions  Transaction[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+
+model Transaction {
+  id            String          @id @default(cuid())
+  amount        Int
+  payee         String
+  notes         String?
+  date          DateTime
+  userId        String          
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categoryId    String?         
+  category      Cateregory?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  portfolioId   String          
+  portfolio     Portfolio       @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
 
  
 model Account {
