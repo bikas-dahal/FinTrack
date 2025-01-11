@@ -19,6 +19,7 @@ export const useEditPortfolio = (id?: string) => {
             toast.success('Portfolio updated successfully')
             queryClient.invalidateQueries({queryKey: ['port', {id}]})
             queryClient.invalidateQueries({queryKey: ['portfolio']})
+            queryClient.invalidateQueries({queryKey: ['transactions']})
         },
         onError: (error) => {
             toast.error('Failed to edit portfolio')

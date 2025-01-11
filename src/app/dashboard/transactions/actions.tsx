@@ -2,8 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { useDeleteCategory } from "@/features/categories/api/use-delete-category"
-import { useOpenCategory } from "@/features/categories/hooks/use-open-category"
+import { useDeleteTransaction } from "@/features/transactions/api/use-delete-transaction"
+import { useOpenTransaction } from "@/features/transactions/hooks/use-open-transaction"
 import { useConfirm } from "@/hooks/use-confirm"
 import { Edit, MoreHorizontal, Trash2Icon } from "lucide-react"
 
@@ -14,8 +14,8 @@ export const Actions = ({ id }: { id: string }) => {
         'This action cannot be undone',
     )
 
-    const {onOpen} = useOpenCategory()
-    const deleteMutation = useDeleteCategory(id)
+    const {onOpen} = useOpenTransaction()
+    const deleteMutation = useDeleteTransaction(id)
 
     const handleDelete = async () => {
         const ok = await confirm()

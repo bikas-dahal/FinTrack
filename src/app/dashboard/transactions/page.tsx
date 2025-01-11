@@ -23,7 +23,8 @@ const TransactoinsPage = () => {
     const transactionQuery = useGetTransactions()
     const deleteTransaction = useBulkDeleteTransactions()
 
-    const categories = transactionQuery.data || []
+    const transactions = transactionQuery.data || []
+
 
     const isDisabled = transactionQuery.isLoading || transactionQuery.isFetching || deleteTransaction.isPending
 
@@ -58,9 +59,9 @@ const TransactoinsPage = () => {
             </CardHeader>
             <CardContent>
                 <DataTable 
-                    filterKey='name' 
+                    filterKey='payee' 
                     columns={columns} 
-                    data={categories} 
+                    data={transactions} 
                     onDelete={(row) => {
                         const ids = row.map(r => r.original.id)
                         deleteTransaction.mutate({ids})

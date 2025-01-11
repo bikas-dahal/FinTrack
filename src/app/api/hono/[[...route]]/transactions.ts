@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { Hono } from "hono";
 import {zValidator} from '@hono/zod-validator'
 import { z } from "zod";
-import { parse, subDays } from "date-fns";
+import { parse, parseISO, subDays } from "date-fns";
 
 
 const app = new Hono() 
@@ -25,13 +25,14 @@ const app = new Hono()
             const defaultTo = new Date()
             const defaultFrom = subDays(defaultTo, 30)
 
-            const startDate = from ? parse(from, 'yyyy-MM-dd', new Date()) : defaultFrom
-            const endDate = to ? parse(to, 'yyyy-MM-dd', new Date()) : defaultTo
-            
+            const startDate = from ? parseISO(from) : defaultFrom
+            const endDate = to ? parseISO(to) : defaultTo;
+
+            console.log('defaultTo defaultFrom', startDate , endDate)
 
             const data = await prisma.transaction.findMany({
                 where: {
-                    portfolioId,
+                    // portfolioId,
                     // @ts-ignore
                     userId: session.id,
                     date: {
@@ -62,6 +63,8 @@ const app = new Hono()
                     date: 'desc'
                 }
             })
+
+            console.log('data', data)
 
         return c.json({ data })
     })

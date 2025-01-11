@@ -10,6 +10,10 @@ import { useDeleteTransaction } from "../api/use-delete-transaction"
 import { useGetTransaction } from "../api/use-get-transaction"
 import { TransactionFormType } from "@/schema/form"
 import { TransactionForm } from "./transaction-form"
+import { useGetPortfolios } from "@/features/portfolio/api/use-get-portfolios"
+import { useCreatePortfolio } from "@/features/portfolio/api/use-create-portfolio"
+import { useCreateCategory } from "@/features/categories/api/use-create-category"
+import { useGetCategories } from "@/features/categories/api/use-get-categories"
 
 
 export const EditTransactionSheet = () => {
@@ -32,9 +36,31 @@ export const EditTransactionSheet = () => {
     const deleteMutation = useDeleteTransaction(id)
     const transactionQuery = useGetTransaction(id)
 
-    const isPending = editMutation.isPending || deleteMutation.isPending
+     const categoryQuery = useGetCategories()
+        const categoryMutation = useCreateCategory() 
+    
+        const onCreateCategory = (name: string) => 
+            categoryMutation.mutate({name, description: ''})
+    
+        const categoryOptions = (categoryQuery.data || []).map(category => ({
+            label: category.name,
+            value: category.id
+        }))
+    
+        const portfolioQuery = useGetPortfolios()
+        const portfolioMutation = useCreatePortfolio()
+    
+        const onCreatePortfolio = (name: string) => 
+            portfolioMutation.mutate({name, description: ''})
+    
+        const portfolioOptions = (portfolioQuery.data || []).map(portfolio => ({
+            label: portfolio.name,
+            value: portfolio.id
+        }))
 
-    const isLoading = transactionQuery.isLoading
+    const isPending = editMutation.isPending || deleteMutation.isPending || categoryMutation.isPending || portfolioMutation.isPending || transactionQuery.isLoading 
+
+    const isLoading = transactionQuery.isLoading || categoryQuery.isLoading || portfolioQuery.isLoading
 
     const onSubmit = (value: TransactionFormType) => {
         console.log(value)
@@ -46,12 +72,14 @@ export const EditTransactionSheet = () => {
     }
 
     const defaultValues = transactionQuery.data ? {
-        name: transactionQuery.data.name,
-        description: transactionQuery.data.description,
-    } : {
-        name: '',
-        description: '',
-    }
+        accountId: transactionQuery.data.portfolioId,
+        categoryId: transactionQuery.data.categoryId,
+        portfolioId: transactionQuery.data.portfolioId,
+        amount: transactionQuery.data.amount.toString(),
+        date: transactionQuery.data.date ? new Date(transactionQuery.data.date) : new Date(),
+        payee: transactionQuery.data.payee,
+        notes: transactionQuery.data.notes
+    } : undefined
 
     const onDelete = async () => {
         const ok = await confirm()
@@ -79,13 +107,20 @@ export const EditTransactionSheet = () => {
                             <Loader2Icon className="animate-spin size-6 text-slate-400" />
                         </div>
                     ) : (
-                        <TransactionForm
-                            id={id} 
-                            disabled={isPending} 
-                            onSubmit={onSubmit} 
-                            defaultValues={defaultValues}
-                            onDelete={onDelete} 
-                        />
+                        <TransactionForm 
+                        id={id}
+                        disabled={isPending} 
+                        onSubmit={onSubmit} 
+                        onDelete={onDelete}
+                        categoryOptions={categoryOptions}
+                        portfolioOptions={portfolioOptions}
+                        onCreateCategory={onCreateCategory}
+                        onCreatePortfolio={onCreatePortfolio}
+                        defaultValues={
+                            defaultValues
+                        } 
+
+                    />
                     )}
                 </SheetContent>
             </Sheet>

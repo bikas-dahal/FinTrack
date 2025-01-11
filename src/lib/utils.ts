@@ -13,3 +13,8 @@ export const convertAmountFromMilliunits = (amount: number) => {
 export const convertAmountToMilliunits = (amount: number) => {
   return Math.round(amount * 1000)
 }
+
+export const formatCurrency =(value: number) => {
+  // const finalValue = convertAmountFromMilliunits(value)
+  return Intl.NumberFormat('en-US', { style: 'currency', currency: 'NPR', minimumFractionDigits: 2}).format(value)
+}

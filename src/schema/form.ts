@@ -18,7 +18,7 @@ export type CategoryFormType = z.infer<typeof categoryFormSchema>
 export const transactionFormSchema = z.object({
     amount: z.string().or(z.number()),
     date: z.coerce.date(),
-    categoryId: z.string().optional(),
+    categoryId: z.string(),
     payee: z.string(),
     notes: z.string().optional(),
     portfolioId: z.string()
