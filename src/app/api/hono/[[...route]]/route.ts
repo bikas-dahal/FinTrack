@@ -5,6 +5,7 @@ import portfolio from './portfolio'
 import categories from './categories'
 import transactions from './transactions'
 import { sessionMiddleware } from './middleware'
+import summary from './summary'
 
 // type CustomContext = Context<{ sessionData: any }>;
 
@@ -28,6 +29,7 @@ const routes = app
     .route('/portfolio', portfolio)
     .route('/categories', categories)
     .route('/transactions', transactions)
+    .route('/summary', summary)
 
 
 export const GET = handle(app)
