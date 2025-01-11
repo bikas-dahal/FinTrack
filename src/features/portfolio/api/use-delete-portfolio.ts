@@ -19,6 +19,7 @@ export const useDeletePortfolio = (id?: string) => {
             queryClient.invalidateQueries({queryKey: ['port', {id}]})
             queryClient.invalidateQueries({queryKey: ['portfolio']})
             queryClient.invalidateQueries({queryKey: ['transactions']})
+            queryClient.invalidateQueries({queryKey: ['summary']})
         },
         onError: (error) => {
             toast.error('Failed to delete portfolio')

@@ -30,10 +30,10 @@ export const Navigation = () => {
             href: '/dashboard/transactions',
             label: 'Transactions'
         },
-        {
-            href: '/dashboard/budgets',
-            label: 'Budgets'
-        },
+        // {
+        //     href: '/dashboard/budgets',
+        //     label: 'Budgets'
+        // },
         {
             href: '/dashboard/portfolio',
             label: 'Portfolio'

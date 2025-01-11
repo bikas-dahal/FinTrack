@@ -105,6 +105,7 @@ const app = new Hono()
                 where: {
                     // @ts-ignore
                     userId: session.id,
+                    
                     transactions: {
                         some: {
                             date: {

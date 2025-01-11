@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { Hono } from "hono";
 import {zValidator} from '@hono/zod-validator'
 import { z } from "zod";
-import { parse, parseISO, subDays } from "date-fns";
+import {  parseISO, subDays } from "date-fns";
 
 
 const app = new Hono() 
@@ -139,7 +139,7 @@ const app = new Hono()
 
         // console.log('reach here', data)
 
-        return c.json({ data: 'hi' })
+        return c.json({ data })
     })
     .post(
         '/bulk-delete',

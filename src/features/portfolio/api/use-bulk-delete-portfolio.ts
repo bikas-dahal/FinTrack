@@ -18,6 +18,10 @@ export const useBulkDeletePortfolios = () => {
         onSuccess: () => {
             toast.success('Portfolio Deleted successfully')
             queryClient.invalidateQueries({queryKey: ['portfolio']})
+            queryClient.invalidateQueries({queryKey: ['portfolios']})
+            queryClient.invalidateQueries({queryKey: ['transactions']})
+            queryClient.invalidateQueries({queryKey: ['summary']})
+        
         },
         onError: (error) => {
             toast.error('Failed to delete portfolio')

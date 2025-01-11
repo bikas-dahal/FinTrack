@@ -5,9 +5,9 @@ import { z } from "zod";
 
 import { Context } from 'hono';
 
-interface CustomContext extends Context {
-  get(key: 'sessionData'): { id: string } | undefined;
-}
+// interface CustomContext extends Context {
+//   get(key: 'sessionData'): { id: string } | undefined;
+// }
 
 
 const app = new Hono() 
@@ -94,7 +94,7 @@ const app = new Hono()
 
         // console.log('reach here', data)
 
-        return c.json({ data: 'hi' })
+        return c.json({ data })
     })
     .post(
         '/bulk-delete',

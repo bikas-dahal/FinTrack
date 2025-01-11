@@ -1,7 +1,6 @@
 import { getUserSession } from '@/actions/auth/session'
 import { DataCharts } from '@/components/data-charts'
 import { Dashboard } from '@/components/util/dashboard'
-import { useNewPortfolio } from '@/features/portfolio/hooks/use-new-portfolio'
 import React from 'react'
 
 const DashboardPage = async () => {

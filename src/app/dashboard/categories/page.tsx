@@ -63,7 +63,7 @@ const CategoriesPage = () => {
                     data={categories} 
                     onDelete={(row) => {
                         const ids = row.map(r => r.original.id)
-                        deleteCategory.mutate({ids})
+                        deleteCategory.mutate({ ids })
                     }}
                     disabled={isDisabled}
                 />

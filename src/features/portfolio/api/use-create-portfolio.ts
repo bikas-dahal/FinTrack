@@ -18,6 +18,9 @@ export const useCreatePortfolio = () => {
         onSuccess: () => {
             toast.success('Portfolio created successfully')
             queryClient.invalidateQueries({queryKey: ['portfolio']})
+            queryClient.invalidateQueries({queryKey: ['portfolios']})
+            queryClient.invalidateQueries({queryKey: ['transactions']})
+            queryClient.invalidateQueries({queryKey: ['summary']})
         },
         onError: (error) => {
             toast.error('Failed to create portfolio')

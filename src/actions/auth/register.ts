@@ -27,6 +27,7 @@ export const registerUser = async (data: AuthType) => {
             data: user
         }
     } catch (error) {
+        console.log(error)
         throw new Error('Username already exists' as string)
     }
 

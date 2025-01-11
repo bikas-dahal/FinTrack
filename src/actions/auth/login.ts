@@ -2,9 +2,7 @@
 
 import { signIn } from '@/auth'
 import { AuthSchema, AuthType } from '@/schema/auth'
-import { hash } from 'bcryptjs'
 import { AuthError } from 'next-auth'
-import { toast } from 'sonner'
 
 export const login = async () => {
     await signIn('google')

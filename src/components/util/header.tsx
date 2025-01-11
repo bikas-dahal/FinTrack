@@ -5,6 +5,7 @@ import { getUserSession } from '@/actions/auth/session'
 import { HeaderLogo } from './header-logo'
 import { Navigation } from './navigation'
 import { Welcome } from './welcome'
+import { Filters } from '../filters'
 
 const Header = async () => {
 
@@ -27,6 +28,7 @@ const Header = async () => {
             </div>
             <div className='w-full'>
                 <Welcome />
+                <Filters />
             </div>
             
         </div>

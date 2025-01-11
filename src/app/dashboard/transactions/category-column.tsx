@@ -1,6 +1,5 @@
 import { useOpenCategory } from "@/features/categories/hooks/use-open-category"
 import { cn } from "@/lib/utils"
-import { TriangleAlertIcon } from "lucide-react"
 
 type Props = {
     

@@ -1,4 +1,4 @@
-import { Context, Hono } from 'hono'
+import {  Hono } from 'hono'
 import { handle } from 'hono/vercel'
 
 import portfolio from './portfolio'

@@ -2,6 +2,7 @@
 import { auth } from './auth'
 import { NextResponse, NextRequest } from 'next/server'
 
+
 // Middleware function wrapped with auth
 export default auth(async function middleware(req: NextRequest) {
   // Get the session using auth

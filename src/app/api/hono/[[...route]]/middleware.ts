@@ -1,8 +1,7 @@
 import { auth } from '@/auth';
-import { Context, Hono } from 'hono';
 
 
-export const sessionMiddleware = async (c, next) => {
+export const sessionMiddleware = async (c:any, next:any) => {
   try {
     // Call the NextAuth helper to get the session
     const session = await auth(); 
