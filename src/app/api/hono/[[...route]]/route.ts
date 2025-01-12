@@ -7,20 +7,15 @@ import transactions from './transactions'
 import { sessionMiddleware } from './middleware'
 import summary from './summary'
 
-// type CustomContext = Context<{ sessionData: any }>;
-
-// interface CustomContext extends Context {
-//     get(key: 'sessionData'): { id: string } | undefined;
-//   }
 
 const app = new Hono().basePath('/api/hono')
-
 
 
 app.onError((error, c) => {
     console.error(error)
     return c.json({ error: 'Internal server error' }, 500)
 })
+
 
 app.use('*', sessionMiddleware)
 

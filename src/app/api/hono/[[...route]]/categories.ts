@@ -6,7 +6,6 @@ import { z } from "zod";
 
 const app = new Hono() 
     .get('/',
-        
         async (c) => {
             // @ts-ignore
             const session = c.get('sessionData')

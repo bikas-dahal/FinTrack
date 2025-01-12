@@ -28,10 +28,16 @@ export const useGetSummary = () => {
 
             const { data } = await response.json()
 
+            console.log('data', data)
+
+            const expenseAmon = convertAmountFromMilliunits(data.expensesAmount)
+            console.log('first', expenseAmon)
+
             return {
                 ...data,
+
                 incomeAmount: convertAmountFromMilliunits(data.incomeAmount),
-                expenseAmount: convertAmountFromMilliunits(data.expensesAmount),
+                expensesAmount: convertAmountFromMilliunits(data.expensesAmount),
                 remainingAmount: convertAmountFromMilliunits(data.remainingAmount),
                 categories: data.categories.map((category) => ({
                     ...category,

@@ -8,18 +8,15 @@ import { SheetProvider } from '@/components/providers/sheet-provider';
 
 const DashboardLayout = async ({ children}: {children: React.ReactNode}) => {
 
-    const session = await auth()
 
   return (
     <>
         <QueryProvider>
-          <SessionProvider session={session}>
               <Header />
               <div className='max-w-screen-xl mx-auto'>
                 <SheetProvider />
                   {children}
               </div>
-          </SessionProvider>
         </QueryProvider>
     </>
   )

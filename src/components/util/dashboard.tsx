@@ -11,6 +11,8 @@ export const Dashboard = () => {
 
     const { data, isLoading } = useGetSummary()
 
+    console.log('data', data)
+
     const params = useSearchParams()
     const from = params.get('from') || undefined
     const to = params.get('to') || undefined
